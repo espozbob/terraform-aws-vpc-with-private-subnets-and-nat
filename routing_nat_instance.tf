@@ -25,7 +25,7 @@ resource "aws_route_table" "nat_instance_2" {
 
   route {
     cidr_block  = "0.0.0.0/0"
-    instance_id = "${aws_nat_gateway.nat_2.id}"
+    instance_id = "${aws_instance.nat_2.id}"
   }
 
   tags {
