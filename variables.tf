@@ -1,4 +1,7 @@
 variable "project" {}
+variable "az_a" {}
+variable "az_b" {}
+variable "az_c" {}
 variable "multi_az" {
   default = false
 }
