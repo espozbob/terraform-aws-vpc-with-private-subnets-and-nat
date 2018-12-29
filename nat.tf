@@ -32,6 +32,15 @@ data "aws_ami" "nat" {
 }
 
 # Nat instance #1
+resource "aws_eip" "nat_instance_1" {
+  count = "${local.nat_instance ? 1 : 0}"
+  instance  = "${aws_instance.nat_1.id}"
+  vpc       = true
+  tags = {
+    Name        = "NAT #1"
+  }
+}
+
 resource "aws_instance" "nat_1" {
   count                       = "${local.nat_instance ? 1 : 0}"
   ami                         = "${data.aws_ami.nat.id}"
@@ -47,6 +56,14 @@ resource "aws_instance" "nat_1" {
 }
 
 # Nat instance #2
+resource "aws_eip" "nat_instance_2" {
+  count = "${local.nat_instance_multi_az ? 1 : 0}"
+  instance  = "${aws_instance.nat_2.id}"
+  vpc       = true
+  tags = {
+    Name        = "NAT #2"
+  }
+}
 resource "aws_instance" "nat_2" {
   count                       = "${local.nat_instance_multi_az ? 1 : 0}"
   ami                         = "${data.aws_ami.nat.id}"
