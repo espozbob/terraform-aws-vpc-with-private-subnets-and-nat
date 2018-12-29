@@ -33,6 +33,9 @@ module "project_vpc" {
   source            = "github.com/jetbrains-infra/terraform-aws-vpc-with-private-subnets-and-nat"
   project           = "myproject" // required
   multi_az          = false
+  az_a              = "ap-northeast-2a"  // if multi_az is true, it's required.
+  az_b              = "ap-northeast-2b"  // it is for backup, not used for real
+  az_c              = "ap-northeast-2c"  
   rds               = false
   nat_mode          = "gateway" // or "instance"
   nat_instance_type = "t2.small"
