@@ -25,6 +25,12 @@ output "nat_gw_ip_1" {
 output "nat_gw_ip_2" {
   value = "${local.nat_gw_multi_az ? join("", aws_eip.nat_2.*.public_ip) : ""}"
 }
+output "nat_instance_eip_1" {
+  value = "${local.nat_instance ? join("", aws_eip.nat_instance_1.*.public_ip) : ""}"
+}
+output "nat_instance_eip_2" {
+  value = "${local.nat_instance_multi_az ? join("", aws_eip.nat_instance_2.*.public_ip) : ""}"
+}
 output "nat_instance_ip_1" {
   value = "${local.nat_instance ? join("", aws_instance.nat_1.*.public_ip) : ""}"
 }
